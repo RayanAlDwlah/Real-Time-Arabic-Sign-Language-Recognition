@@ -97,8 +97,7 @@ Below is a snapshot collage from the **real-time recognition system**:
 
 ---
 
-## 📁 Repository Structure
-Real-Time-Arabic-Sign-Language-Recognition/
+### 🧱 Repository Structure
 │
 ├── 📁 src/
 │   ├── model.ipynb                 # Notebook for model training, evaluation, and visualization
@@ -112,15 +111,13 @@ Real-Time-Arabic-Sign-Language-Recognition/
 │
 ├── 📁 assets/
 │   ├── demo.png                    # Demo image showing real-time detection results
-│   ├── الحروف مصوره.jpeg           # Reference image of Arabic sign letters
+│   ├── arabicletters.jpeg          # Reference image of Arabic sign letters
 │
 ├── requirements.txt                # List of dependencies (TensorFlow, OpenCV, XGBoost, etc.)
 ├── .gitignore                      # Ignored files and directories
 ├── .python-version                 # Python version used
 ├── README.md                       # Project documentation
 └── LICENSE                         # License (optional)
-
----
 
 ## 🧑‍💻 Author
 
