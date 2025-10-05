@@ -1,11 +1,11 @@
-# -*- coding: utf-8 -*-
+
 import os, time, collections, json
 import cv2
 import numpy as np
 import mediapipe as mp
 import tensorflow as tf
 
-# ========= إعدادات =========
+# إعدادات 
 MODEL_PATH   = "model.InceptionV3_stage2.keras"
 IMG_SIZE     = (299, 299)
 CLASS_NAMES  = [
@@ -13,16 +13,16 @@ CLASS_NAMES  = [
     "jeem","kaaf","khaa","la","laam","meem","nun","ra","saad","seen","sheen",
     "ta","taa","thaa","thal","toot","waw","ya","yaa","zay"
 ]
-TRAIN_CLASSES_JSON = "class_names.json"   # اختياري: يثبّت ترتيب الكلاسات من التدريب
-ROI_MARGIN   = 0.30                       # جرّبه 0.25–0.40 حسب الكادر
+TRAIN_CLASSES_JSON = "class_names.json"   
+ROI_MARGIN   = 0.30                    
 CONF_WARN    = 0.7
 EMA_ALPHA    = 0.2
 SMOOTH_WIN   = 8
 SHOW_MIRROR  = True
-USE_TTA_DEF  = False                      # تقدر تبدّله من الكيبورد
+USE_TTA_DEF  = False                   
 CAM_INDEX    = 0
 
-# ========= تحميل الترتيب (اختياري) =========
+#  تحميل الترتيب) 
 if os.path.exists(TRAIN_CLASSES_JSON):
     with open(TRAIN_CLASSES_JSON, "r") as f:
         saved_classes = json.load(f)
@@ -33,11 +33,11 @@ if os.path.exists(TRAIN_CLASSES_JSON):
 
 num_classes = len(CLASS_NAMES)
 
-# ========= تحميل المودل =========
+# تحميل المودل 
 print("[INFO] loading Keras model...")
 model = tf.keras.models.load_model(MODEL_PATH)
 
-# ========= MediaPipe =========
+# MediaPipe 
 mp_hands = mp.solutions.hands
 mp_draw  = mp.solutions.drawing_utils
 hands = mp_hands.Hands(
@@ -48,7 +48,7 @@ hands = mp_hands.Hands(
     min_tracking_confidence=0.5
 )
 
-# ========= أدوات =========
+# أدوات 
 def compute_hand_roi(frame, hand_landmarks):
     h, w, _ = frame.shape
     xs = [int(lm.x * w) for lm in hand_landmarks.landmark]
@@ -75,7 +75,7 @@ def predict_softmax(img_bgr):
     x = np.expand_dims(x, 0)
     return model.predict(x, verbose=0)[0]  # (num_classes,)
 
-# ========= تنعيم =========
+# تنعيم 
 ema_probs, vote_buffer = None, collections.deque(maxlen=SMOOTH_WIN)
 def smooth_and_decode(probs, reset=False):
     global ema_probs, vote_buffer
@@ -105,11 +105,11 @@ def render_topk(canvas, probs, k=3, x=10, y=20, scale=0.6):
         cv2.putText(canvas, "LOW CONFIDENCE -> ?????", (x, y + k*18 + 8),
                     cv2.FONT_HERSHEY_SIMPLEX, scale, (0,0,255), 1, cv2.LINE_AA)
 
-# ========= اللوب الرئيسي =========
+# اللوب الرئيسي 
 def main():
     cap = cv2.VideoCapture(CAM_INDEX)
     if not cap.isOpened():
-        print("❌ ما قدر يفتح الكاميرا.")
+        print(" ما قدر يفتح الكاميرا.")
         return
 
     print("Controls: m=mirror | s=TTA | r=reset smoothing | q=quit")
@@ -150,16 +150,15 @@ def main():
                 view,
                 title,
                 (x1, max(40, y1 - 15)),
-                cv2.FONT_HERSHEY_SIMPLEX,  # خط واضح وثقيل
-                1.8,                        # حجم الخط (كبّره شوي)
-                (0, 255, 0) if pred_conf >= CONF_WARN else (0, 0, 255),  # أخضر إذا واثق، أحمر إذا ضعيف
-                4,                          # سماكة الخط
+                cv2.FONT_HERSHEY_SIMPLEX,  
+                1.8,                       
+                (0, 255, 0) if pred_conf >= CONF_WARN else (0, 0, 255), 
+                4,                          
                 cv2.LINE_AA
             )
         else:
             smooth_and_decode(None, reset=True)
 
-        # FPS
         dt = time.time() - t0
         t0 = time.time()
         fps = 0.9*fps + 0.1*(1.0/max(dt, 1e-6))
