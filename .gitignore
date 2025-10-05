@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Notebooks
+.ipynb_checkpoints/
+.DS_Store
+
+# Virtual envs
+venv/
+.env/
+.venv/
+
+# Data & generated features (ما نرفعها)
+data/
+data_splitted/
+features_hybrid/
+
+# Large model artifacts (بنرفعها عبر LFS)
+*.keras
+*.h5
+*.tflite
+*.onnx
+
+# Logs & misc
+logs/
+*.log
