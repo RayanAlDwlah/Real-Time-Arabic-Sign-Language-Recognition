@@ -19,12 +19,6 @@ data/
 data_splitted/
 features_hybrid/
 
-# Models handled by LFS
-models/*.keras
-models/*.h5
-models/*.tflite
-models/*.onnx
-
 # Logs & misc
 logs/
 *.log
