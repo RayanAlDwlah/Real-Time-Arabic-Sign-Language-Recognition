@@ -1,6 +1,6 @@
 # 🤟 Real-Time Arabic Sign Language Recognition (CNN, Landmarks & Hybrid XGBoost)
 
-![Banner](./الحروف%20مصورە.jpeg)
+![Banner](./arabicletters.jpeg)
 
 End-to-end deep learning project for recognizing **Arabic Sign Language letters** in real time using **CNN**, **hand landmarks**, and a **hybrid model (CNN + Landmarks + XGBoost)**.  
 This repository includes data preprocessing, model training, evaluation, and a real-time demo using the webcam.
@@ -26,7 +26,7 @@ The dataset used in this project is **ASLAD-190K (Arabic Sign Language Alphabet 
 🔗 [ASLAD-190K on Kaggle](https://www.kaggle.com/datasets/boulesnane/aslad-190k-arabic-sign-language-alphabet-dataset/data?select=Number_of_images_per_Letter_ASLAD-190K.csv)
 
 **Details:**
-- **Total Images:** 190,000+ labeled images  
+- **Total Images:** 96،000+ labeled images  
 - **Classes:** 32 Arabic letters  
 - **Structure:** Each class represents one Arabic alphabet gesture  
 - **Landmarks:** Extracted using MediaPipe Hands for hybrid model  
@@ -98,27 +98,28 @@ Below is a snapshot collage from the **real-time recognition system**:
 ---
 
 ### 🧱 Repository Structure
+```bash
+Real-Time-Arabic-Sign-Language-Recognition/
+├── src/
+│   ├── model.ipynb               # Notebook for model training, evaluation, and visualization
+│   └── live_asl_cam.py           # Real-time Arabic Sign Language recognition script
 │
-├── 📁 src/
-│   ├── model.ipynb                 # Notebook for model training, evaluation, and visualization
-│   ├── live_asl_cam.py             # Real-time Arabic Sign Language recognition script
-│
-├── 📁 models/
+├── models/
 │   ├── model.InceptionV3_stage1.keras
 │   ├── model.InceptionV3_stage2.keras
 │   ├── asl_landmarks.weights.h5
-│   ├── xgb_cnn_plus_landmarks.json
+│   └── xgb_cnn_plus_landmarks.json
 │
-├── 📁 assets/
-│   ├── demo.png                    # Demo image showing real-time detection results
-│   ├── arabicletters.jpeg          # Reference image of Arabic sign letters
+├── assets/
+│   ├── demo.png                  # Demo image showing real-time detection results
+│   └── arabicletters.jpeg        # Reference image of Arabic sign letters
 │
-├── requirements.txt                # List of dependencies (TensorFlow, OpenCV, XGBoost, etc.)
-├── .gitignore                      # Ignored files and directories
-├── .python-version                 # Python version used
-├── README.md                       # Project documentation
-└── LICENSE                         # License (optional)
-
+├── requirements.txt              # List of dependencies (TensorFlow, OpenCV, XGBoost, etc.)
+├── .gitignore                    # Ignored files and directories
+├── .python-version               # Python version used
+├── README.md                     # Project documentation
+└── LICENSE                       # License (optional)
+```
 ## 🧑‍💻 Author
 
 **Rayan Saleh Al-Dwlah**  
