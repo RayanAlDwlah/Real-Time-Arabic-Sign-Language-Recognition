@@ -13,7 +13,7 @@ Recognizes the 32 letters of the Arabic sign language alphabet from a webcam fee
 
 ## Overview
 
-Fingerspelling is how signers spell names and words that have no dedicated sign, so a letter recognizer is a basic building block for Arabic sign language tools. Several letters differ only in finger angle or orientation, and a webcam frame adds background clutter, lighting changes, and a moving hand. This project trains three models on a balanced 96,000-image subset of the public [ASLAD-190K dataset](https://www.kaggle.com/datasets/boulesnane/aslad-190k-arabic-sign-language-alphabet-dataset) (3,000 images for each of the 32 classes): a fine-tuned InceptionV3 image classifier, a landmarks-only MLP, and a hybrid that feeds CNN embeddings plus hand-geometry features into XGBoost. A separate script runs the InceptionV3 model live on a webcam with MediaPipe hand cropping and temporal smoothing.
+Fingerspelling is how signers spell names and words that have no dedicated sign, so a letter recognizer is a basic building block for Arabic sign language tools. Several letters differ only in finger angle or orientation, and a webcam frame adds background clutter, lighting changes, and a moving hand. This project trains three models on a balanced 96,000-image subset of the public [ASLAD-190K dataset](https://www.kaggle.com/datasets/boulesnane/aslad-190k-arabic-sign-language-alphabet-dataset) (3,000 images for each of the 32 classes): an InceptionV3 transfer-learning image classifier, a landmarks-only MLP, and a hybrid that feeds CNN embeddings plus hand-geometry features into XGBoost. A separate script runs the InceptionV3 model live on a webcam with MediaPipe hand cropping and temporal smoothing.
 
 ## Evaluation note
 
